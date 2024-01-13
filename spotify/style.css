@@ -1,4 +1,36 @@
 *{
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
+}
+:root{
+    --bodyBg : #000000;
+    --leftBg : #101010;
+    --rightBg : #1d1d1d;
+    --fontcolor : #fcfcfc;
+    --leftSpotifyMenu : #1c1c1c;
+    --header : #101010;
+}
+body{
+    color: var(--fontcolor);
+    background-color: var(--bodyBg);
+}
+header{
+    background-color: var(--header);
+    padding: 25px;
+}
+.left{
+    width: 25vw;
+    min-height: 100vh;
+    background-color: var(--leftBg);
+}
+.leftSpotifyMenu{
+    background-color: var(--leftSpotifyMenu);
+    width: 23vw;
+    height: 10vw;
+}
+.right{
+    width: 75vw;
+    min-height: 100vh;
+    background-color: var(--rightBg);
 }

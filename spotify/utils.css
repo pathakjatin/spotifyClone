@@ -1,0 +1,34 @@
+.flex{
+    display: flex;
+}
+.justify-center{
+    justify-content: center;
+}
+.items-center{
+    align-items: center;
+}
+.redBord{
+    border: 2px solid red;
+    margin: 3px;
+}
+.pd-20{
+    padding: 20px;
+}
+.mx-10{
+    margin: 10px 15px;
+}
+.border-radius{
+    border-radius: 10px;
+}
+.flex-direction-column{
+    flex-direction: column;
+}
+.invert{
+    filter: invert(1);
+}
+.pointer{
+    cursor: pointer;
+}
+.pd-10{
+    padding: 0px 8px;
+}

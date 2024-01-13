@@ -3,11 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Spotify - Web Player : Music for everyone</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="utils.css">
 </head>
 <body>
+    <div class="bodyContainer flex">
+        <div class="left flex-direction-column justify-center items-center">
+            <div class="leftSpotifyMenu mx-10 border-radius">
+                <img class="invert pd-20" src="./images/logo.svg" alt="Spotify-logo" srcset="">
+            </div>
+            <div class="library">
+
+            </div>
+            <div class="foot">
+
+            </div>
+        </div>
+        <div class="right">
+            <header class="flex">
+                <div class="arrows">
+                    <img class="pointer pd-10" src="./images/arrowleft.svg" alt="">
+                    <img class="pointer pd-10" src="./images/rightarrow.svg" alt="">
+                </div>
+                <div class="login">
+                    <a href="#">Sign Up</a>
+                    <a href="#"><button>Log in</button></a>
+                </div>
+            </header>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
