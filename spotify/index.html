@@ -11,7 +11,15 @@
     <div class="bodyContainer flex">
         <div class="left flex-direction-column justify-center items-center">
             <div class="leftSpotifyMenu mx-10 border-radius">
-                <img class="invert pd-20" src="./images/logo.svg" alt="Spotify-logo" srcset="">
+                <img class="invert pd-20 pointer" src="./images/logo.svg" alt="Spotify-logo" srcset="">
+                <ul class="">
+                    <li class="pd-left-20 flex bottom"><img class="invert icon pointer" src="./images/home.svg" alt="home-icon" srcset="">
+                        <a href="#" class="text-decor-none fs-18 font-color">Home</a>
+                    </li>
+                    <li class="pd-left-20 flex"><img class="icon pointer inactive-icon" src="./images/search.svg" alt="search-icon" srcset="">
+                        <a href="#" class="inactive text-decor-none fs-18 inactive-font-color">Search</a>
+                    </li>
+                </ul>
             </div>
             <div class="library">
 
@@ -21,14 +29,14 @@
             </div>
         </div>
         <div class="right">
-            <header class="flex">
+            <header class="flex justify-between">
                 <div class="arrows">
                     <img class="pointer pd-10" src="./images/arrowleft.svg" alt="">
                     <img class="pointer pd-10" src="./images/rightarrow.svg" alt="">
                 </div>
                 <div class="login">
-                    <a href="#">Sign Up</a>
-                    <a href="#"><button>Log in</button></a>
+                    <a class="pd-10 signup" href="#">Sign Up</a>
+                    <a href="#"><button class="btn-cta pointer">Log in</button></a>
                 </div>
             </header>
         </div>

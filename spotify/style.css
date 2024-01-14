@@ -10,6 +10,7 @@
     --fontcolor : #fcfcfc;
     --leftSpotifyMenu : #1c1c1c;
     --header : #101010;
+    --signup :#9a9a9a;
 }
 body{
     color: var(--fontcolor);
@@ -29,8 +30,39 @@ header{
     width: 23vw;
     height: 10vw;
 }
+.leftSpotifyMenu ul li{
+    list-style: none;
+}
 .right{
     width: 75vw;
     min-height: 100vh;
     background-color: var(--rightBg);
 }
+.login .signup{
+    text-decoration: none;
+    font-size: 20px;
+    color: var(--signup);
+}
+.login .signup:hover{
+    transform: scale(1.5);
+    color: var(--fontcolor);
+    transition: all 0.1s ease-in 0s;
+}
+.btn-cta{
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 25px;
+}
+button:hover{
+    transform: scale(1.02);
+    transition: all 0.1s ease-in 0s;
+}
+.leftSpotifyMenu ul li a:hover{
+    color: var(--fontcolor);
+    transition: all 0.1s ease-in 0s;
+    transform: scale(1.02);
+}
+/* .leftSpotifyMenu ul li svg:hover{
+    fill: #fcfcfc;
+} */

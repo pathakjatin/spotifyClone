@@ -4,6 +4,9 @@
 .justify-center{
     justify-content: center;
 }
+.justify-between{
+    justify-content: space-between;
+}
 .items-center{
     align-items: center;
 }
@@ -30,5 +33,29 @@
     cursor: pointer;
 }
 .pd-10{
-    padding: 0px 8px;
+    padding: 8px 8px;
+}
+.icon{
+    width: 25px;
+    height: 25px;
+}
+.pd-left-20{
+    padding: 5px 0px 6px 20px;
+}
+.text-decor-none{
+    text-decoration: none;
+    padding-left: 15px;
+    padding-top: 2.5px;
+}
+.font-color{
+    color: var(--fontcolor);
+}
+.fs-18{
+    font-size: 18px;
+}
+.inactive-font-color{
+    color: var(--signup);
+}
+.bottom{
+    padding-bottom: 10px;
 }
