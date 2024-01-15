@@ -20,6 +20,9 @@
 .mx-10{
     margin: 10px 15px;
 }
+.mx1{
+    margin: 10px 0px; 
+}
 .border-radius{
     border-radius: 10px;
 }
@@ -58,4 +61,25 @@
 }
 .bottom{
     padding-bottom: 10px;
+}
+.pd15{
+    padding: 15px;
+}
+.pd-top{
+    padding-top: 18px;
+}
+.font-weight-bold{
+    font-weight: 700;
+}
+.wrap{
+    flex-wrap: wrap;
+}
+.gap{
+    gap: 15px;
+}
+.fs-1rem{
+    font-size: 0.75rem;
+}
+.inline-block{
+    display:inline;
 }

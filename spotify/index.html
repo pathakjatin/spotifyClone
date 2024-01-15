@@ -6,6 +6,9 @@
     <title>Spotify - Web Player : Music for everyone</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="utils.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="bodyContainer flex">
@@ -14,31 +17,94 @@
                 <img class="invert pd-20 pointer" src="./images/logo.svg" alt="Spotify-logo" srcset="">
                 <ul class="">
                     <li class="pd-left-20 flex bottom"><img class="invert icon pointer" src="./images/home.svg" alt="home-icon" srcset="">
-                        <a href="#" class="text-decor-none fs-18 font-color">Home</a>
+                        <a href="#" class="text-decor-none fs-18 font-color font-weight-bold">Home</a>
                     </li>
                     <li class="pd-left-20 flex"><img class="icon pointer inactive-icon" src="./images/search.svg" alt="search-icon" srcset="">
                         <a href="#" class="inactive text-decor-none fs-18 inactive-font-color">Search</a>
                     </li>
                 </ul>
             </div>
-            <div class="library">
-
-            </div>
-            <div class="foot">
-
+            <div class="library mx-10 border-radius justify-between">
+                <span class="lib flex">
+                    <img class="icon invert pd15 pointer" src="./images/lib.svg" alt="library" srcset="">
+                    <p class="pd-top fs-18 pointer inactive-font-color hover" >Your Library</p>
+                </span>
+                <!-- <img class="icon invert pd15 pointer inline-block" src="./images/plus.svg" alt="add icon" srcset=""> -->
+                <div class="foot flex wrap mx-10 border-radius">
+                    <div>
+                        <a class="text-decor-none inactive-font-color pd15 fs-1rem pointer inline-block hover" href="https://www.spotify.com/in-en/legal/">
+                            <span>Legal</span>
+                        </a>
+                    </div>
+                    <div>
+                        <a class="text-decor-none inactive-font-color pd15 fs-1rem pointer inline-block hover" href="https://www.spotify.com/in-en/privacy/">
+                            <span>Privacy Center</span>
+                        </a>
+                    </div>
+                    <div>
+                        <a class="text-decor-none inactive-font-color pd15 fs-1rem pointer inline-block hover" href="https://www.spotify.com/in-en/legal/privacy-policy/">
+                            <span>Privacy Policy</span>
+                        </a>
+                    </div>
+                    <div>
+                        <a class="text-decor-none inactive-font-color pd15 fs-1rem pointer inline-block hover" href="https://www.spotify.com/in-en/legal/cookies-policy/">
+                            <span>Cookies</span>
+                        </a>
+                    </div>
+                    <div>
+                        <a class="text-decor-none inactive-font-color pd15 fs-1rem pointer inline-block hover" href="https://www.spotify.com/in-en/legal/privacy-policy/#s3">
+                            <span>About Ads</span>
+                        </a>
+                    </div>
+                    <div>
+                        <a class="text-decor-none inactive-font-color pd15 fs-1rem pointer inline-block hover" href="https://www.spotify.com/in-en/accessibility/">
+                            <span>Accessibility</span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="right">
+        <div class="right mx1">
             <header class="flex justify-between">
                 <div class="arrows">
                     <img class="pointer pd-10" src="./images/arrowleft.svg" alt="">
                     <img class="pointer pd-10" src="./images/rightarrow.svg" alt="">
                 </div>
                 <div class="login">
-                    <a class="pd-10 signup" href="#">Sign Up</a>
-                    <a href="#"><button class="btn-cta pointer">Log in</button></a>
+                    <a class="pd-10 signup font-weight-bold" href="#">Sign Up</a>
+                    <a class="font-weight-bold" href="#"><button class="btn-cta pointer">Log in</button></a>
                 </div>
             </header>
+            <div class="spotifyPlaylist pd15">
+                <span><h1 class="font-weight-bold pointer">Heramb's top picks</h1></span>
+                <div class="cardContainer flex gap wrap">
+                    <div class="card border-radius">
+                        <img class="border-radius" src="https://i.scdn.co/image/ab67616d00001e028863bc11d2aa12b54f5aeb36" alt="" srcset="">
+                        <h2>After Hours</h2>
+                        <p>By Weekend</p>
+                    </div>
+                    <div class="card border-radius">
+                        <img class="border-radius" src="https://i.scdn.co/image/ab67616d00001e02d49090ccded888b4c3fa0e0f" alt="" srcset="">
+                        <h2>Love you like that</h2>
+                        <p>By Lauv</p>
+                    </div>
+                    <div class="card border-radius">
+                        <img class="border-radius" src="https://i.scdn.co/image/ab67616d00001e021f44db452a68e229650a302c" alt="" srcset="">
+                        <h2>I'm in love with you</h2>
+                        <p>By The 1975</p>
+                    </div>
+                    <div class="card border-radius">
+                        <img class="border-radius" src="https://i.scdn.co/image/ab67616d00001e020506a838892be6229dca857b" alt="" srcset="">
+                        <h2>Starving</h2>
+                        <p>By Hailee Steinfeld, Grey, Zedd</p>
+                    </div>
+                    <div class="card border-radius">
+                        <img class="border-radius" src="https://i.scdn.co/image/ab67616d00001e022f76b797c382bedcafdf45e1" alt="" srcset="">
+                        <h2>Strong</h2>
+                        <p>By One Direction</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>
