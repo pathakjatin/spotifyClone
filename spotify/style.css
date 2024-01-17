@@ -41,6 +41,7 @@ header{
     min-height: 100vh;
     background-color: var(--rightBg);
     border-radius: 20px;
+    position: relative;
 }
 .login .signup{
     text-decoration: none;
@@ -89,11 +90,17 @@ button:hover{
     transform: scale(1.05);
     transition: all 0.2s ease-in 0s;
 }
+
 .spotifyPlaylist .cardContainer .card{
     width: 200px;
     background-color: var(--cardbg);
     padding: 10px;
-    
+    position: relative;
+}
+.play-button{
+    position: absolute;
+    bottom: 130px;
+    right: 20px;
 }
 .card > *{
     padding-top: 9px;
@@ -101,4 +108,14 @@ button:hover{
 .spotifyPlaylist .cardContainer .card img{
     width: 100%;
     object-fit: contain;
+}
+.playbar{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #65df92;
+    padding: 15px;
+}
+.songList ol{
+    padding: 0px 50px;
 }
