@@ -1,4 +1,5 @@
 console.log("Welcome to Spotify clone by Jatin Pathak");
+let currSong = new Audio();
 //CAUSING ERROR AS THE FETCHED DATA IS IN HTML FORMAT AND NOT JSON
         // const songsurl = "http://127.0.0.1:5500/spotify/songs/";
         // async function main(){
@@ -48,19 +49,42 @@ async function getSongs() {
         console.error("An error occurred:", error);
     }
 }
+const playMusic = (track) =>{
+    // var audio = new Audio("./songs/" + track);
+    currSong.src = "./songs/" + track;
+    currSong.play();
+}
 async function main(){
+
     let songs = await getSongs();
     console.log(songs);
     let songList = document.querySelector(".songList").getElementsByTagName("ol")[0];
     for (const song of songs) {
-        songList.innerHTML = songList.innerHTML + `<li> ${song.replaceAll("%20", " ")}</li>`;
+        songList.innerHTML += `<li> 
+                            <img class="pointer" src="./images/note.svg" alt="" srcset="">
+                            <div class="info">
+                                <div>${song.replaceAll("%20", " ")}</div>
+                                <div>Jatin</div>
+                            </div>
+                            <img class="invert pointer" src="./images/play.svg" alt="" srcset="">
+        </li>`;
     }
-    //play the first song
-    var audio = new Audio(songs[0]);
-    //audio.play();
-    audio.addEventListener("loadeddata", () =>{
-        //let duration = audio.duration;
-        console.log(audio.duration, audio.currentSrc, audio.currentTime);
+    //event listener to each song
+    Array.from(document.querySelector(".songList").getElementsByTagName("li")).forEach(e=>{
+        e.addEventListener("click", element=>{
+            console.log(e.querySelector(".info").firstElementChild.innerHTML);
+            playMusic(e.querySelector(".info").firstElementChild.innerHTML.trim());
+        })
+    })
+    //event listener for next and previous
+    play.addEventListener("click", ()=>{
+        if(currSong.paused){
+            currSong.play();
+            play.src = "play.svg"
+        }else{
+            currSong.pause();
+            play.src = "pause.svg";
+        }
     })
 }
 main();

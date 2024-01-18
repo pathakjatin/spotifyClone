@@ -42,6 +42,7 @@ header{
     background-color: var(--rightBg);
     border-radius: 20px;
     position: relative;
+    overflow: auto;
 }
 .login .signup{
     text-decoration: none;
@@ -90,7 +91,9 @@ button:hover{
     transform: scale(1.05);
     transition: all 0.2s ease-in 0s;
 }
-
+.spotifyPlaylist{
+    height: 550px;
+}
 .spotifyPlaylist .cardContainer .card{
     width: 200px;
     background-color: var(--cardbg);
@@ -110,12 +113,52 @@ button:hover{
     object-fit: contain;
 }
 .playbar{
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+    position: fixed;
+    bottom: 20px;
+    width: 73vw;
     background-color: #65df92;
     padding: 15px;
+    z-index: 0;
+}
+.songList{
+    overflow: auto;
+    height: 450px;
 }
 .songList ol{
-    padding: 0px 50px;
+    padding: 0px 15px;
+    margin-bottom: 40px;
+}
+.songList .info{
+    font-size: 15px;
+    width: 340px;
+}
+.songList ol li{
+    display: flex;
+    list-style:decimal;
+    gap: 15px;
+    cursor: pointer;
+    padding: 12px 8px;
+    width: 250px;
+    border: 1px solid white;
+    margin: 10px 0px;
+    border-radius: 5px;
+    justify-content: space-between;
+}
+.seekbar{
+    height: 2px;
+    width: 98%;
+    position: absolute;
+    bottom: 8px;
+    border: 2px solid black;
+    z-index: 1;
+}
+.circle{
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: rgb(255, 255, 255);
+    position: relative;
+    bottom: -51px;
+    left: 0%;
+    z-index: 2;
 }
