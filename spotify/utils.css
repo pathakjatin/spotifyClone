@@ -7,6 +7,9 @@
 .justify-between{
     justify-content: space-between;
 }
+.justify-around{
+    justify-content: space-around;
+}
 .items-center{
     align-items: center;
 }
@@ -71,6 +74,9 @@
 .font-weight-bold{
     font-weight: 700;
 }
+.font-weight-light{
+    font-weight: 400;
+}
 .wrap{
     flex-wrap: wrap;
 }
@@ -82,6 +88,9 @@
 }
 .inline-block{
     display:inline;
+}
+.font-color-black{
+    color: black;
 }
 /* .pd-right-left{
     padding: 0px 10px;

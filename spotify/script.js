@@ -11,7 +11,23 @@ let currSong = new Audio();
 
         // }
         // main()
-
+        function formatTime(seconds) {
+            // Get the whole minutes and remaining seconds
+            var minutes = Math.floor(seconds / 60);
+            var remainingSeconds = Math.floor(seconds % 60);
+        
+            // Add leading zeros if necessary
+            var formattedMinutes = (minutes < 10) ? "0" + minutes : minutes;
+            var formattedSeconds = (remainingSeconds < 10) ? "0" + remainingSeconds : remainingSeconds;
+        
+            // Concatenate minutes and seconds with ":"
+            return formattedMinutes + ":" + formattedSeconds;
+        }
+        
+        // Example usage:
+        //console.log(formatTime(62));  Output: "01:02"
+        //console.log(formatTime(127));  Output: "02:07"
+        
 async function getSongs() {
     try {
         let response = await fetch("http://127.0.0.1:5500/spotify/songs/");
@@ -49,15 +65,21 @@ async function getSongs() {
         console.error("An error occurred:", error);
     }
 }
-const playMusic = (track) =>{
+const playMusic = (track, pause=false) =>{
     // var audio = new Audio("./songs/" + track);
     currSong.src = "./songs/" + track;
-    currSong.play();
+    if(!pause){
+        currSong.play();
+        play.src = "./images/pause.svg"
+    }
+    document.querySelector(".songInfo").innerHTML = decodeURI(track) ;
+    document.querySelector(".songTime").innerHTML = "00:00 / 00:00";
 }
 async function main(){
 
     let songs = await getSongs();
     console.log(songs);
+    playMusic(songs[0], true)
     let songList = document.querySelector(".songList").getElementsByTagName("ol")[0];
     for (const song of songs) {
         songList.innerHTML += `<li> 
@@ -72,19 +94,27 @@ async function main(){
     //event listener to each song
     Array.from(document.querySelector(".songList").getElementsByTagName("li")).forEach(e=>{
         e.addEventListener("click", element=>{
-            console.log(e.querySelector(".info").firstElementChild.innerHTML);
             playMusic(e.querySelector(".info").firstElementChild.innerHTML.trim());
         })
     })
     //event listener for next and previous
-    play.addEventListener("click", ()=>{
-        if(currSong.paused){
+    play.addEventListener("click", () => {
+        if (currSong.paused) {
             currSong.play();
-            play.src = "play.svg"
-        }else{
+            play.src = "./images/pause.svg"; // Change the src to pause.svg when playing
+        } else {
             currSong.pause();
-            play.src = "pause.svg";
+            play.src = "./images/play.svg"; // Change the src to play.svg when paused
         }
+    });
+    currSong.addEventListener("timeupdate", ()=>{
+        document.querySelector(".songTime").innerHTML = `${formatTime(currSong.currentTime)} / ${formatTime(currSong.duration)}`
+        document.querySelector(".circle").style.left = (currSong.currentTime / currSong.duration) * 100 + "%";
+    })
+    document.querySelector(".seekbar").addEventListener("click",(e)=>{
+        let percent = (e.offsetX / e.target.getBoundingClientRect().width)*100;
+        document.querySelector(".circle").style.left = percent + "%";
+        currSong.currentTime = ((currSong.duration) * percent)/100;
     })
 }
 main();
