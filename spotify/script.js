@@ -79,7 +79,6 @@ const playMusic = (track, pause=false) =>{
 async function main(){
 
     songs = await getSongs();
-    console.log(songs);
     playMusic(songs[0], true)
     let songList = document.querySelector(".songList").getElementsByTagName("ol")[0];
     for (const song of songs) {
@@ -141,6 +140,9 @@ async function main(){
         if((idx+1) < songs.length ){
             playMusic(songs[idx+1])
         }
+    })
+    document.querySelector("#volume").addEventListener("change", (e)=>{
+        currSong.volume = parseInt(e.target.value)/100
     })
 }
 main();

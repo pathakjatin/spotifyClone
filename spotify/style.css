@@ -173,6 +173,15 @@ button:hover{
 .left .close{
     display: none;
 }
+.volume{
+    gap: 20px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+#volume{
+    width: 100px;
+}
 @media (max-width:1400px){
     .left{
         position: absolute;
@@ -248,23 +257,35 @@ button:hover{
     }
     .playbar{
         width: 90vw;
-        img{
-            width: 28px;
-            height: 28px;
+        img> #play , #previous, #next{
+            width: 50px;
+            height: 50px;
         }
         .btns{
-            gap: 8px;
+            gap: 5px;
         }
+    }
+    .stv{
+        padding-left: 15px;
     }
     .seekbar{
         width: 95%;
     }
-    .playbar .songInfo , .songTime{
+    .playbar .songInfo{
         font-size: 18px;
+    }
+    .playbar .songTime{
+        font-size: 15px;
     }
     .login .signup{
         font-size: 15px;
         padding: 4px;
+    }
+    .volume{
+        gap: 6px;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
     }
 }
 @media (max-width:435px){
