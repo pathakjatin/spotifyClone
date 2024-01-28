@@ -1,5 +1,6 @@
 console.log("Welcome to Spotify clone by Jatin Pathak");
 let currSong = new Audio();
+let songs;
 //CAUSING ERROR AS THE FETCHED DATA IS IN HTML FORMAT AND NOT JSON
         // const songsurl = "http://127.0.0.1:5500/spotify/songs/";
         // async function main(){
@@ -77,7 +78,7 @@ const playMusic = (track, pause=false) =>{
 }
 async function main(){
 
-    let songs = await getSongs();
+    songs = await getSongs();
     console.log(songs);
     playMusic(songs[0], true)
     let songList = document.querySelector(".songList").getElementsByTagName("ol")[0];
@@ -115,6 +116,31 @@ async function main(){
         let percent = (e.offsetX / e.target.getBoundingClientRect().width)*100;
         document.querySelector(".circle").style.left = percent + "%";
         currSong.currentTime = ((currSong.duration) * percent)/100;
+    })
+    let hamburger = document.querySelector(".hamburger")
+    hamburger.addEventListener("click", ()=>{
+        document.querySelector(".left").style.left = 0;
+        // hamburger.src = "./images/cross.svg"
+        // hamburger.addEventListener("click",()=>{
+        //     document.querySelector(".left").style.left = -100 +"%"
+        //     hamburger.src = "./images/hamburger.svg"
+        // })
+    })
+    document.querySelector(".close").addEventListener("click",()=>{
+        document.querySelector(".left").style.left = -100 +"%"
+    })
+    document.querySelector("#previous").addEventListener("click",()=>{
+        let idx = songs.indexOf(currSong.src.split("/").slice(-1)[0])
+        if((idx-1) >= 0){
+            playMusic(songs[idx-1])
+        }
+    })
+    document.querySelector("#next").addEventListener("click",()=>{
+        currSong.pause()
+        let idx = songs.indexOf(currSong.src.split("/").slice(-1)[0])
+        if((idx+1) < songs.length ){
+            playMusic(songs[idx+1])
+        }
     })
 }
 main();
