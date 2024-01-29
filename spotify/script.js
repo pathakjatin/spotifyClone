@@ -1,6 +1,7 @@
 console.log("Welcome to Spotify clone by Jatin Pathak");
 let currSong = new Audio();
 let songs;
+let currFolder;
 //CAUSING ERROR AS THE FETCHED DATA IS IN HTML FORMAT AND NOT JSON
         // const songsurl = "http://127.0.0.1:5500/spotify/songs/";
         // async function main(){
@@ -29,17 +30,15 @@ let songs;
         //console.log(formatTime(62));  Output: "01:02"
         //console.log(formatTime(127));  Output: "02:07"
         
-async function getSongs() {
+async function getSongs(folder) {
     try {
-        let response = await fetch("http://127.0.0.1:5500/spotify/songs/");
-
+        currFolder = folder;
+        let response = await fetch(`http://127.0.0.1:5500/spotify/songs/${folder}/`);
+        
         // Check if the response status is OK
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
-
-        console.log("Getting data...");
-
         // Log the raw response to inspect the data
         // console.log("Raw response:", response);
 
@@ -54,33 +53,19 @@ async function getSongs() {
         // Now you can work with the HTML content as needed
         let as = div.getElementsByTagName('a');
         // console.log(as);
-        let songs = [];
+        songs = [];
         for(let i=0; i<as.length; i++){
             const elem = as[i];
             if(elem.href.endsWith(".mp3")){
-                songs.push(elem.href.split("/songs/")[1]);
+                songs.push(elem.href.split(`/${folder}/`)[1]);
             }
         }
-        return songs;
+        
     } catch (error) {
         console.error("An error occurred:", error);
     }
-}
-const playMusic = (track, pause=false) =>{
-    // var audio = new Audio("./songs/" + track);
-    currSong.src = "./songs/" + track;
-    if(!pause){
-        currSong.play();
-        play.src = "./images/pause.svg"
-    }
-    document.querySelector(".songInfo").innerHTML = decodeURI(track) ;
-    document.querySelector(".songTime").innerHTML = "00:00 / 00:00";
-}
-async function main(){
-
-    songs = await getSongs();
-    playMusic(songs[0], true)
     let songList = document.querySelector(".songList").getElementsByTagName("ol")[0];
+    songList.innerHTML = ""
     for (const song of songs) {
         songList.innerHTML += `<li> 
                             <img class="pointer" src="./images/note.svg" alt="" srcset="">
@@ -97,7 +82,109 @@ async function main(){
             playMusic(e.querySelector(".info").firstElementChild.innerHTML.trim());
         })
     })
+}
+const playMusic = (track, pause=false) =>{
+    // var audio = new Audio("./songs/" + track);
+    currSong.src = `songs/${currFolder}/` + track;
+    if(!pause){
+        currSong.play();
+        play.src = "./images/pause.svg"
+    }
+    document.querySelector(".songInfo").innerHTML = decodeURI(track) ;
+    document.querySelector(".songTime").innerHTML = "00:00 / 00:00";
+}
+async function displayAlbums(){
+    // display all the albums on the page 
+    try{
+        let response = await fetch(`http://127.0.0.1:5500/spotify/songs/`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        } 
+        let htmlData = await response.text();
+        // console.log(htmlData)
+        let div = document.createElement("div");
+        div.innerHTML = htmlData; 
+        // console.log(div) 
+        let anchors = div.getElementsByTagName('a') 
+        // console.log(anchors)
+        let folders =[]
+        let array = Array.from(anchors)
+            // console.log(e.href)
+            for(let idx=0; idx<array.length ; idx++){
+                const e = array[idx]
+            if (e.href.includes("/songs/")) {
+                let folder = (e.href.split("/").slice(-1)[0]);
+                //get metadata
+                let cardContainer = document.querySelector(".cardContainer")
+                async function fetchData() {
+                    try {
+                        let response = await fetch(`http://127.0.0.1:5500/spotify/songs/${folder}/info.json`);
+                        let data = await response.json();
+                        // console.log(data);
+                        cardContainer.innerHTML = cardContainer.innerHTML + `
+                        <div class="card border-radius pointer" data-folder="${folder}">
+                        <div class="play-button">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="#1FDF64" xmlns="http://www.w3.org/2000/svg" class="injected-svg" data-src="/icons/play-circle-stroke-sharp.svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" color="#000000">
+            <circle cx="12" cy="12" r="10" stroke="#000000" stroke-width="1.5"></circle>
+            <path d="M9.5 16V8L16 12L9.5 16Z" stroke="#000000" stroke-width="1.5" stroke-linejoin="round"></path>
+        </svg>
+                        </div>
+                        <img class="border-radius" src="./songs/${folder}/cover.jpg" alt="" srcset="">
+                        <h2>${data.title}</h2>
+                        <p>${data.description}</p>
+                    </div>
+                        `
+
+                    } catch (error) {
+                        console.error("An error occurred:", error);
+                    }
+                }
+
+                fetchData(); // Call the asynchronous function to execute it
+                
+                document.querySelector(".cardContainer").addEventListener("click", async (event) => {
+                    const card = event.target.closest(".card");
+                    if (card) {
+                        const folder = card.dataset.folder;
+                        // Perform actions based on the clicked card
+                        songs = await getSongs(folder);
+                    }
+                });
+            }
+
+        }
+    } catch(error){
+        console.error("An error occurred:", error);
+    }
+    // Array.from(document.querySelector(".cardContainer")).forEach(e=>{
+    //     e.addEventListener("click",async item=>{
+    //         // console.log(item.target , item.currentTarget.dataset)
+    //         songs = await getSongs(`${item.currentTarget.dataset.folder}`);
+    //     })
+    // })
+
+    
+}
+async function main(){
+
+    await getSongs("heramb");
+    // console.log(songs)
+    playMusic(songs[0], true)
+    displayAlbums()
     //event listener for next and previous
+        document.querySelector("#previous").addEventListener("click",()=>{
+        let idx = songs.indexOf(currSong.src.split("/").slice(-1)[0])
+        if((idx-1) >= 0){
+            playMusic(songs[idx-1])
+        }
+    })
+    document.querySelector("#next").addEventListener("click",()=>{
+        currSong.pause()
+        let idx = songs.indexOf(currSong.src.split("/").slice(-1)[0])
+        if((idx+1) < songs.length ){
+            playMusic(songs[idx+1])
+        }
+    })
     play.addEventListener("click", () => {
         if (currSong.paused) {
             currSong.play();
@@ -128,21 +215,40 @@ async function main(){
     document.querySelector(".close").addEventListener("click",()=>{
         document.querySelector(".left").style.left = -100 +"%"
     })
-    document.querySelector("#previous").addEventListener("click",()=>{
-        let idx = songs.indexOf(currSong.src.split("/").slice(-1)[0])
-        if((idx-1) >= 0){
-            playMusic(songs[idx-1])
-        }
-    })
-    document.querySelector("#next").addEventListener("click",()=>{
-        currSong.pause()
-        let idx = songs.indexOf(currSong.src.split("/").slice(-1)[0])
-        if((idx+1) < songs.length ){
-            playMusic(songs[idx+1])
-        }
-    })
+
     document.querySelector("#volume").addEventListener("change", (e)=>{
         currSong.volume = parseInt(e.target.value)/100
     })
+// mute
+    // document.querySelector(".volume > img").addEventListener("click",(e)=>{
+    //     // console.log(e.target)
+    //     // console.log("muted")
+    //     if(e.currentTarget.src == ("./images/volume.svg")){
+    //         // e.target.src = e.target.src.replace("./images/volume.svg","./images/mute.svg")
+    //         e.currentTarget.src = "./images/mute.svg";
+    //         console.log("change to mute")
+    //         currSong.volume = 0;
+    //     } else{
+    //         //e.target.src = e.target.src.replace("./images/mute.svg","./images/volume.svg")
+    //         e.currentTarget.src = "./images/volume.svg";
+    //         console.log("change to volume")
+    //         currSong.volume = 0.1;
+    //     }
+    // })
+    document.querySelector(".volume > img").addEventListener("click", (e) => {
+        // Get the src attribute of the <img> element
+        let src = e.currentTarget.getAttribute("src");
+    
+        if (src === "./images/volume.svg") {
+            e.currentTarget.src = "./images/mute.svg";
+            currSong.volume = 0;
+            document.querySelector("#volume").value=0
+        } else {
+            e.currentTarget.src = "./images/volume.svg";
+            currSong.volume = 0.10;
+            document.querySelector("#volume").value=10
+        }
+    });
+    
 }
 main();

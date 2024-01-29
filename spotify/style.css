@@ -93,24 +93,41 @@ button:hover{
     transition: all 0.2s ease-in 0s;
 }
 .spotifyPlaylist{
-    height: 550px;
+    max-height: 60vh;
+}
+.spotifyPlaylist .cardContainer{
+    gap: 30px;
+    max-height: 70vh;
 }
 .spotifyPlaylist .cardContainer .card{
-    width: 200px;
+    width: 220px;
+    /*height: 400px;*/
     background-color: var(--cardbg);
     padding: 10px;
     position: relative;
+    transition: all 0.5s ease-in-out;
 }
-.play-button{
+.spotifyPlaylist .cardContainer .card:hover{
+    transform: scale(1.025);
+    cursor: pointer;
+    background-color: var(--leftBg);
+}
+.spotifyPlaylist .cardContainer .card .play-button{
     position: absolute;
     bottom: 130px;
     right: 20px;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+.spotifyPlaylist .cardContainer .card:hover .play-button{
+    opacity: 1;
 }
 .card > *{
     padding-top: 9px;
 }
 .spotifyPlaylist .cardContainer .card img{
     width: 100%;
+    height: 70%;
     object-fit: contain;
 }
 .playbar{
@@ -238,6 +255,9 @@ button:hover{
         width: 250px;
         height: 150px;
     }
+    .songList{
+        height: 400px;
+    }
     .songList ol li{
         word-break: break-all;
         width: 220px;
@@ -257,7 +277,7 @@ button:hover{
     }
     .playbar{
         width: 90vw;
-        img> #play , #previous, #next{
+        img>  #play , #previous, #next{
             width: 50px;
             height: 50px;
         }
@@ -290,7 +310,7 @@ button:hover{
 }
 @media (max-width:435px){
     .playbar{
-        img{
+        *img{
             width: 22px;
             height: 22px;
         }
