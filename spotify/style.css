@@ -128,7 +128,7 @@ button:hover{
 .spotifyPlaylist .cardContainer .card img{
     width: 100%;
     height: 70%;
-    object-fit: contain;
+    object-fit: cover/contain;
 }
 .playbar{
     position: fixed;
@@ -270,6 +270,7 @@ button:hover{
     }
     .spotifyPlaylist .cardContainer{
         justify-content: center;
+        max-height: 50vh;
     }
     .spotifyPlaylist .cardContainer .card{
         width: 80%;
@@ -320,5 +321,8 @@ button:hover{
     }
     .playbar .songInfo , .songTime{
         font-size: 14px;
+    }
+    .spotifyPlaylist .cardContainer .card{
+        width: auto;
     }
 }

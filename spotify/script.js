@@ -64,6 +64,8 @@ async function getSongs(folder) {
     } catch (error) {
         console.error("An error occurred:", error);
     }
+    //play first song
+
     let songList = document.querySelector(".songList").getElementsByTagName("ol")[0];
     songList.innerHTML = ""
     for (const song of songs) {
@@ -82,6 +84,7 @@ async function getSongs(folder) {
             playMusic(e.querySelector(".info").firstElementChild.innerHTML.trim());
         })
     })
+    return songs
 }
 const playMusic = (track, pause=false) =>{
     // var audio = new Audio("./songs/" + track);
@@ -148,6 +151,7 @@ async function displayAlbums(){
                         const folder = card.dataset.folder;
                         // Perform actions based on the clicked card
                         songs = await getSongs(folder);
+                        playMusic(songs[0])
                     }
                 });
             }
