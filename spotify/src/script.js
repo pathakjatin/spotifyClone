@@ -33,6 +33,7 @@ let currFolder;
 async function getSongs(folder) {
     try {
         currFolder = folder;
+        //let response = await fetch(`http://127.0.0.1:5500/spotify/songs/${folder}/`);
         let response = await fetch(`http://127.0.0.1:5500/spotify/songs/${folder}/`);
         
         // Check if the response status is OK
@@ -70,12 +71,12 @@ async function getSongs(folder) {
     songList.innerHTML = ""
     for (const song of songs) {
         songList.innerHTML += `<li> 
-                            <img class="pointer" src="./images/note.svg" alt="" srcset="">
+                            <img class="pointer" src="/spotify/images/note.svg" alt="" srcset="">
                             <div class="info">
                                 <div>${song.replaceAll("%20", " ")}</div>
                                 <div>Jatin</div>
                             </div>
-                            <img class="invert pointer" src="./images/play.svg" alt="" srcset="">
+                            <img class="invert pointer" src="/spotify/images/play.svg" alt="" srcset="">
         </li>`;
     }
     //event listener to each song
@@ -88,10 +89,10 @@ async function getSongs(folder) {
 }
 const playMusic = (track, pause=false) =>{
     // var audio = new Audio("./songs/" + track);
-    currSong.src = `songs/${currFolder}/` + track;
+    currSong.src = `/spotify/songs/${currFolder}/` + track;
     if(!pause){
         currSong.play();
-        play.src = "./images/pause.svg"
+        play.src = "/spotify/images/pause.svg"
     }
     document.querySelector(".songInfo").innerHTML = decodeURI(track) ;
     document.querySelector(".songTime").innerHTML = "00:00 / 00:00";
@@ -132,7 +133,7 @@ async function displayAlbums(){
             <path d="M9.5 16V8L16 12L9.5 16Z" stroke="#000000" stroke-width="1.5" stroke-linejoin="round"></path>
         </svg>
                         </div>
-                        <img class="border-radius" src="./songs/${folder}/cover.jpg" alt="" srcset="">
+                        <img class="border-radius" src="/spotify/songs/${folder}/cover.jpg" alt="" srcset="">
                         <h2>${data.title}</h2>
                         <p>${data.description}</p>
                     </div>
@@ -192,10 +193,10 @@ async function main(){
     play.addEventListener("click", () => {
         if (currSong.paused) {
             currSong.play();
-            play.src = "./images/pause.svg"; // Change the src to pause.svg when playing
+            play.src = "/spotify/images/pause.svg"; // Change the src to pause.svg when playing
         } else {
             currSong.pause();
-            play.src = "./images/play.svg"; // Change the src to play.svg when paused
+            play.src = "/spotify/images/play.svg"; // Change the src to play.svg when paused
         }
     });
     currSong.addEventListener("timeupdate", ()=>{
@@ -243,12 +244,12 @@ async function main(){
         // Get the src attribute of the <img> element
         let src = e.currentTarget.getAttribute("src");
     
-        if (src === "./images/volume.svg") {
-            e.currentTarget.src = "./images/mute.svg";
+        if (src === "/spotify/images/volume.svg") {
+            e.currentTarget.src = "/spotify/images/mute.svg";
             currSong.volume = 0;
             document.querySelector("#volume").value=0
         } else {
-            e.currentTarget.src = "./images/volume.svg";
+            e.currentTarget.src = "/spotify/images/volume.svg";
             currSong.volume = 0.10;
             document.querySelector("#volume").value=10
         }

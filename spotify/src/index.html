@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spotify - Web Player : Music for everyone</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="utils.css">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./utils.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
@@ -14,22 +14,22 @@
     <div class="bodyContainer flex">
         <div class="left flex-direction-column justify-center items-center">
             <div class="close">
-                <img class="invert pointer" src="./images/cross.svg" alt="">
+                <img class="invert pointer" src="/spotify/images/cross.svg" alt="">
             </div>
             <div class="leftSpotifyMenu mx-10 border-radius">
-                <img class="invert pd-20 pointer" src="./images/logo.svg" alt="Spotify-logo" srcset="">
+                <img class="invert pd-20 pointer" src="/spotify/images/logo.svg" alt="Spotify-logo" srcset="">
                 <ul class="">
-                    <li class="pd-left-20 flex bottom"><img class="invert icon pointer" src="./images/home.svg" alt="home-icon" srcset="">
+                    <li class="pd-left-20 flex bottom"><img class="invert icon pointer" src="/spotify/images/home.svg" alt="home-icon" srcset="">
                         <a href="#" class="text-decor-none fs-18 font-color font-weight-bold">Home</a>
                     </li>
-                    <li class="pd-left-20 flex"><img class="icon pointer inactive-icon" src="./images/search.svg" alt="search-icon" srcset="">
+                    <li class="pd-left-20 flex"><img class="icon pointer inactive-icon" src="/spotify/images/search.svg" alt="search-icon" srcset="">
                         <a href="#" class="inactive text-decor-none fs-18 inactive-font-color">Search</a>
                     </li>
                 </ul>
             </div>
             <div class="library mx-10 border-radius justify-between">
                 <span class="lib flex">
-                    <img class="icon invert pd15 pointer" src="./images/lib.svg" alt="library" srcset="">
+                    <img class="icon invert pd15 pointer" src="/spotify/images/lib.svg" alt="library" srcset="">
                     <p class="pd-top fs-18 pointer inactive-font-color hover" >Your Library</p>
                 </span>
                 <div class="songList">
@@ -74,9 +74,9 @@
         <div class="right mx1">
             <header class="flex justify-between">
                 <div class="arrows flex justify-center gap items-center">
-                    <img class="pointer hamburger invert" src="./images/hamburger.svg" alt="">
-                    <img class="pointer pd-10" src="./images/arrowleft.svg" alt="">
-                    <img class="pointer pd-10" src="./images/rightarrow.svg" alt="">
+                    <img class="pointer hamburger invert" src="/spotify/images/hamburger.svg" alt="">
+                    <img class="pointer pd-10" src="/spotify/images/arrowleft.svg" alt="">
+                    <img class="pointer pd-10" src="/spotify/images/rightarrow.svg" alt="">
                 </div>
                     
                 <div class="login">
@@ -99,14 +99,14 @@
                 <div class="flex justify-around" id="songbar">
                     <div class="songInfo font-color-black fs-18 font-weight-light"></div>
                     <div class="btns flex justify-evenly items-center">
-                        <img id="previous" class="pointer gap" src="./images/prev.svg" alt="">
-                        <img id="play" class="pointer gap" src="./images/play.svg" alt="">
-                        <img id="next" class="pointer gap" src="./images/next.svg" alt="" srcset="">
+                        <img id="previous" class="pointer gap" src="/spotify/images/prev.svg" alt="">
+                        <img id="play" class="pointer gap" src="/spotify/images/play.svg" alt="">
+                        <img id="next" class="pointer gap" src="/spotify/images/next.svg" alt="" srcset="">
                     </div>
                     <div class="stv flex justify-center gap items-center">
                         <div class="songTime font-color-black fs-18 font-weight-light"></div>
                         <div class="volume flex justify-center items-center gap">
-                            <img class="pointer" id="mute" src="./images/volume.svg" alt="">
+                            <img class="pointer" id="mute" src="/spotify/images/volume.svg" alt="">
                             <div class="range">
                                 <input class="pointer" type="range" name="volume" id="volume">
                             </div>
@@ -118,6 +118,6 @@
             </div>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script src="./script.js"></script>
 </body>
 </html>
